@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="get_start.css" rel="stylesheet">
+    <script src="lentokone.js" defer></script>
+
+
+</head>
+<body>
+
+<iframe
+    id="map"
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22054566.21002082!2d1.0912425854464392!3d47.56374540337336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ed8886cfadda85%3A0x72ef99e6b3fcf079!2sEurooppa!5e0!3m2!1sfi!2sfi!4v1713556566794">
+</iframe>
+<select id="countrySelect">
+    <option value="paris">Paris, France</option>
+    <option value="berlin">Berlin, Germany</option>
+    <option value="madrid">Madrid, Spain</option>
+</select>
+<button onclick="updateMap()">Update Map</button>
+
+
+    <header class="airplane_kysymykset">
+        <div class="login">
+            <h1>login</h1>
+            <input id="signin" type="text" placeholder="Pelaajan nimi" required>
+            <button id="Player_name" >Sign In</button><select id="playerSelection"></select>
+                <div class="Player_info">
+                    <ul id="login_name"></ul>
+                    <ul id="iso_country"></ul>
+                    <ul id="consumed"></ul>
+                    <ul id="budget"></ul>
+                    <ul id="location"></ul>
+
+            <button id="submitBudget">Update Budget</button>
+                 </div>
+
+    <!-- Options should be dynamically populated here -->
+
+
+        </div>
+        <div class="MaaName">
+        <h1> MAAN NIMI </h1>
+            <select id="airport"> <option value="tulossa"></option></select>
+            <button id="hae">hae</button>
+            <ul id="name"></ul>
+        </div>
+
+
+
+
+
+            <div class="Questions">
+                <h2 id="question">KYSYMYKSET</h2>
+                <label id="Q"></label>
+                <label id="A"></label>
+                <input id="C">
+                <button id="submitAnswer">Submit Answer</button>
+                <input type="hidden" id="correctAnswerStorage" />
+            </div>
+
+    </header>
+<nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="lentokone.html">Home</a></li>
+        <li><a href="play_rules.html">About</a></li>
+        <li><a href="play.html" >Play</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
