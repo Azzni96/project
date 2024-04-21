@@ -1,0 +1,16 @@
+.loader{
+    display: flex;
+    gap: 0.25rem;
+}
+.loader .dot{
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: white;
+    animation: bounce 1s infinite linear;
+}
+@keyframes bounce {
+    to{
+        translate: 0 -0.25rem;
+    }
+}
