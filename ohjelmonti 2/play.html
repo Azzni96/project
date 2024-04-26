@@ -5,21 +5,15 @@
     <title>Title</title>
     <link href="get_start.css" rel="stylesheet">
     <script src="lentokone.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 
 </head>
 <body>
 
-<iframe
-    id="map"
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22054566.21002082!2d1.0912425854464392!3d47.56374540337336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ed8886cfadda85%3A0x72ef99e6b3fcf079!2sEurooppa!5e0!3m2!1sfi!2sfi!4v1713556566794">
-</iframe>
+<div id="map" style="width: 600px; height: 450px;"></div>
+
 <select id="countrySelect">
     <option value="paris">Paris, France</option>
     <option value="berlin">Berlin, Germany</option>
@@ -50,7 +44,7 @@
         <div class="MaaName">
         <h1> MAAN NIMI </h1>
             <select id="airport"> <option value="tulossa"></option></select>
-            <button id="hae">hae</button>
+            <button onclick="updateMap()" id="hae">hae</button>
             <ul id="name"></ul>
         </div>
 
