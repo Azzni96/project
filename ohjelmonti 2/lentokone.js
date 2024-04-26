@@ -81,7 +81,7 @@ async function haeNappi(){
     const jsonchoices = await choices.json()
     const jsoncountry = await country.json();
     const jsonquestion = await question.json();
-
+    updateMap()
     ChoicesBox(jsonchoices)
     CountryBox(jsoncountry);
     QuestionBox(jsonquestion)
@@ -96,24 +96,21 @@ airport();
 document.querySelector('#hae').addEventListener('click', haeNappi);})
 document.addEventListener('DOMContentLoaded', function(){
 function Namelist(names){
-    let html = '<ul>';
+    let html = '';
     for (let i = 0; i < names.length; i++){
         let Name = names[i]
         html = html + '<li>' + Name + '</li>'
     }
-    html = html + '</ul>'
     document.getElementById('login_name').innerHTML = html
 }
 function singin_account(name){
-    let Html = '<ul>'
+    let Html = ''
     Html = Html + '<li>' + name + '</li>';
-    Html = Html + '</ul>'
     document.getElementById('login_name').innerHTML = Html
 }
 function Iso_country(jsoniso_country){
-    let Html = '<ul>'
+    let Html = ''
     Html = Html + '<li>' + jsoniso_country + '</li>'
-    Html = Html + '</ul>'
     document.getElementById('iso_country').innerHTML = Html
 }
 
@@ -191,14 +188,15 @@ document.querySelector('#Player_name').addEventListener('click', login_button)
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submitAnswer').addEventListener('click', checkCorrectAnswer);
     document.getElementById('submitBudget').addEventListener('click', function() {
-        const html = document.getElementById('Player_name');
+        const html = document.getElementById('login_name');
         if (!html || html.selectedIndex === -1) {
             alert('No player selected.');
             return;
         }
 
-        const playerName = html.options[html.selectedIndex].text; // Get the text of the selected option
-        updateBudget(playerName, 10); // Pass the player name and amount to updateBudget
+        const playerName = html.getElementsByTagName("li");
+        console.log("current player name ", playerName);// Get the text of the selected option
+        updateBudget(playerName); // Pass the player name and amount to updateBudget
     });
 });
 
@@ -211,8 +209,17 @@ async function checkCorrectAnswer() {
         const response = await fetch(`http://127.0.0.1:3000/True_choice/${currentQuestion}`);
         const correctAnswer = await response.json(); // Assuming the correct answer is in the response body directly
 
+           const html = document.getElementById('login_name');
+        if (!html || html.selectedIndex === -1) {
+            alert('No player selected.');
+            return;
+        }
+
+        const currentPlayerName = html.getElementsByTagName("li")[0].innerText;
+
         if (userInput == correctAnswer) {
-            updateBudget('Player_name', 10); // Call updateBudget to adjust the user's budget
+            console.log(userInput)
+            updateBudget(currentPlayerName); // Call updateBudget to adjust the user's budget
             alert('Correct answer!');
         } else {
             alert('Wrong answer. Try again!');
@@ -223,12 +230,11 @@ async function checkCorrectAnswer() {
     }
 }
 
-async function updateBudget(playerName, amount) {
+async function updateBudget(playerName) {
     try {
         const response = await fetch(`http://127.0.0.1:3000/update_add_money_budget/${playerName}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ new_budget: amount })
+            headers: { 'Content-Type': 'application/json' }
         });
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -244,13 +250,13 @@ async function updateBudget(playerName, amount) {
 
 
 
-
+/*
 function updateMap() {
     var select = document.getElementById('countrySelect');
     var selectedOption = select.options[select.selectedIndex].value;
     var mapIframe = document.getElementById('map');
 
-    switch (selectedOption) {
+    switch (selectedOption) {}
         case 'paris':
             mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.4927092229856!2d2.2922926156749324!3d48.85883707928765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0xf07571621577277!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1590245174000";
             break;
@@ -263,7 +269,31 @@ function updateMap() {
     }
 }
 
+*/
+
+// Example coordinates
+var latitude = 48.8566;  // For instance, Paris latitude
+var longitude = 2.3522;  // Paris longitude
+
+// Create the map
+var map = L.map('map').setView([latitude, longitude], 13);
+
+// Add an OpenStreetMap tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Optionally, add a marker
+var marker = L.marker([latitude, longitude]).addTo(map);
+marker.bindPopup('This is the location.').openPopup();
 
 
+function updateMap(value) {
 
+    var latitude = 60.178;  // For instance, Paris latitude
+    var longitude = 24.8044;
+
+    var marker = L.marker([latitude, longitude]).addTo(map);
+    marker.bindPopup('This is the location.').openPopup();
+}
 

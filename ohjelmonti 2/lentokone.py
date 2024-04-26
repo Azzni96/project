@@ -95,6 +95,16 @@ def get_location(names):
     paluujson = json.dumps(result)
     tilakoodi = 200
     return Response(response=paluujson, status=tilakoodi, mimetype="application/json")
+
+@app.route('/get_location_cordinates/<names>')
+def get_location_cordinates(names):
+    sql = f"select airport.longitude_deg, airport.latitude_deg, game.location from airport,game where game.location = airport.ident and game.screen_name='{names}'"
+    cursor = yhteys.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    paluujson = json.dumps(result)
+    tilakoodi = 200
+    return Response(response=paluujson, status=tilakoodi, mimetype="application/json")
 @app.route('/get_consumed/<names>')
 def get_consumed(names):
     sql = "SELECT co2_consumed from game where screen_name = '" + names + "'"
@@ -137,16 +147,14 @@ def countryinfo(iso_country):
 from flask import request
 
 
-@app.route('/update_add_money_budget/<name>', methods=['POST'])
-def update_add_money_budget(name):
+@app.route('/update_add_money_budget/<player_name>', methods=['POST'])
+def update_add_money_budget(player_name):
     try:
-        data = request.get_json()
-        new_budget = data['new_budget']
-        print(f"Updating budget for {name} to {new_budget}")
 
-        sql = "UPDATE game SET co2_budget = %s WHERE screen_name = %s"
+
+        sql = f"UPDATE game SET co2_budget = co2_budget + 10 WHERE screen_name = '{player_name}'"
         cursor = yhteys.cursor()
-        cursor.execute(sql, (new_budget, name))
+        cursor.execute(sql)
         yhteys.commit()
 
         print("Update successful")
