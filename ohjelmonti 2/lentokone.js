@@ -292,17 +292,12 @@ var marker = L.marker([latitude, longitude]).addTo(map);
 marker.bindPopup('This is the location.').openPopup();
 
 
-function updateMap(countries) {
+function updateMap(value) {
 
+    var latitude = 48.8566;  // For instance, Paris latitude
+    var longitude = 2.3522;  // Paris longitude
 
     var marker = L.marker([latitude, longitude]).addTo(map);
     marker.bindPopup('This is the location.').openPopup();
 }
 
-    const countries = {
-            'Finland': { latitude: 60.1699, longitude: 24.9384 },
-            'France': { latitude: 48.8566, longitude: 2.3522 },
-            'Germany': { latitude: 52.5200, longitude: 13.4050 },
-            'Spain': { latitude: 40.4168, longitude: -3.7038 },
-            'Sweden': { latitude: 59.3293, longitude: 18.0686 }
-        };
