@@ -12,14 +12,7 @@
 </head>
 <body>
 
-<div id="map" style="width: 600px; height: 450px;"></div>
 
-<select id="countrySelect">
-    <option value="paris">Paris, France</option>
-    <option value="berlin">Berlin, Germany</option>
-    <option value="madrid">Madrid, Spain</option>
-</select>
-<button onclick="updateMap()">Update Map</button>
 
 
     <header class="airplane_kysymykset">
@@ -33,8 +26,6 @@
                     <ul id="consumed"></ul>
                     <ul id="budget"></ul>
                     <ul id="location"></ul>
-
-            <button id="submitBudget">Update Budget</button>
                  </div>
 
     <!-- Options should be dynamically populated here -->
@@ -60,6 +51,7 @@
                 <button id="submitAnswer">Submit Answer</button>
                 <input type="hidden" id="correctAnswerStorage" />
             </div>
+        <div id="map" ></div>
 
     </header>
 <nav class="navbar">

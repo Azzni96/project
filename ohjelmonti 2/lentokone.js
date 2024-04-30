@@ -66,6 +66,8 @@ function ChoicesBox(jsonchoices){
     HtmlList = HtmlList + '</ul>'
     document.getElementById('A').innerHTML = HtmlList
 }
+
+
 document.addEventListener('DOMContentLoaded', function(){
 async function haeNappi(){
   console.log('hae nappi toimii');
@@ -85,6 +87,7 @@ async function haeNappi(){
     ChoicesBox(jsonchoices)
     CountryBox(jsoncountry);
     QuestionBox(jsonquestion)
+
   } catch (error) {
     console.log(error.message);
   } finally {
@@ -272,8 +275,9 @@ function updateMap() {
 */
 
 // Example coordinates
-var latitude = 48.8566;  // For instance, Paris latitude
-var longitude = 2.3522;  // Paris longitude
+    var latitude = 60.178;  // For instance, Paris latitude
+    var longitude = 24.8044;
+
 
 // Create the map
 var map = L.map('map').setView([latitude, longitude], 13);
@@ -288,12 +292,17 @@ var marker = L.marker([latitude, longitude]).addTo(map);
 marker.bindPopup('This is the location.').openPopup();
 
 
-function updateMap(value) {
+function updateMap(countries) {
 
-    var latitude = 60.178;  // For instance, Paris latitude
-    var longitude = 24.8044;
 
     var marker = L.marker([latitude, longitude]).addTo(map);
     marker.bindPopup('This is the location.').openPopup();
 }
 
+    const countries = {
+            'Finland': { latitude: 60.1699, longitude: 24.9384 },
+            'France': { latitude: 48.8566, longitude: 2.3522 },
+            'Germany': { latitude: 52.5200, longitude: 13.4050 },
+            'Spain': { latitude: 40.4168, longitude: -3.7038 },
+            'Sweden': { latitude: 59.3293, longitude: 18.0686 }
+        };

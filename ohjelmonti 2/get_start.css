@@ -215,3 +215,10 @@ iframe {
     height: 100%;
     width: 60%;
 }
+#map{
+    display: flex;
+    right: 65%;
+    width: 50%;
+    height: 950px;
+    top: -450px;
+}
