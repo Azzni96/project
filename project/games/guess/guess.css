@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+}
+root{
+    --primary-color: red;
+}
+body{
+    margin: 0;
+    background-color: #eee;
+    font-family: Arial, serif;
+}
+h1{
+    text-align: center;
+    padding: 20px;
+    margin: 0 0 50px;
+    background-color: white;
+}
+.guess-game{
+    text-align: center;
+    width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .game-area{
+
+    }
+
+    .key-colors{
+        .key-color {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            margin-bottom: 10px;
+            .key {
+                width: 25px; /* Määritä neliön leveys */
+                height: 25px; /* Määritä neliön korkeus */
+                border-radius: 40%;
+                margin-right: 10px;
+                &.in-place {
+                    background-color: #f89e13;
+                }
+
+                &.not-in-place {
+                    background-color: #18ba89;
+                }
+                &.No {
+                    background-color: #27303f;
+                }
+            }
+            .key-text {
+                font-size: 20px;
+                padding: 15px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+
+
+
+footer{
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+}

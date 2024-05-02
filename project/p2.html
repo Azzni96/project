@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yhdistetty sivu</title>
+    <style>
+        /* Tässä määritellään CSS-tyylit eri osioille */
+        .sivu {
+            display: none; /* Piilotetaan kaikki sivut aluksi */
+        }
+        .nayta {
+            display: block; /* Näytetään valittu sivu */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Otsikko</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="naytaSivu('home')">Home</a></li>
+                <li><a href="#" onclick="naytaSivu('about')">About</a></li>
+                <li><a href="#" onclick="naytaSivu('connect')">Connect Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sisältöalueet -->
+    <div id="home" class="sivu nayta">
+        <h2>Home</h2>
+        <p>Tämä on kotisivu.</p>
+    </div>
+    <div id="about" class="sivu">
+        <h2>About</h2>
+        <p>Tämä on tietoa minusta.</p>
+    </div>
+    <div id="connect" class="sivu">
+        <h2>Connect Me</h2>
+        <p>Ota yhteyttä minuun.</p>
+    </div>
+
+    <!-- JavaScript-koodi sivujen näyttämiseen ja piilottamiseen -->
+    <script>
+        function naytaSivu(sivunId) {
+            // Piilotetaan kaikki sivut
+            var sivut = document.getElementsByClassName('sivu');
+            for (var i = 0; i < sivut.length; i++) {
+                sivut[i].style.display = 'none';
+            }
+            // Näytetään valittu sivu
+            document.getElementById(sivunId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

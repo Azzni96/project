@@ -1,0 +1,62 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+header{
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 200px;
+}
+.logo{
+    text-decoration: none;
+    color: blue;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+.navigation a{
+    text-decoration: none;
+    color: blue;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding-left: 30px;
+}
+.navigation a:hover{
+    color: blue;
+
+}
+section{
+    padding: 100px 200px;
+}
+.main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url("Näyttökuva 2024-04-28 023718.png") no-repeat;
+    background-size: cover ;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+.main h2{
+    color: white;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+.main h2 span{
+    display: inline-block;
+    margin-top: 10px;
+    color: blue;
+    font-size: 3em;
+    font-weight: 600;
+
+}
