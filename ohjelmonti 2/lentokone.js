@@ -83,15 +83,23 @@ async function haeNappi(){
     const jsonchoices = await choices.json()
     const jsoncountry = await country.json();
     const jsonquestion = await question.json();
+
     updateMap()
     ChoicesBox(jsonchoices)
     CountryBox(jsoncountry);
     QuestionBox(jsonquestion)
-
+      const html = document.getElementById('login_name');
+        if (!html || html.selectedIndex === -1) {
+            alert('No player selected.');
+            return;
+        }
+        const currentPlayerName = html.getElementsByTagName("li")[0].innerText;
+        updateBudgetCountry(currentPlayerName)
   } catch (error) {
     console.log(error.message);
   } finally {
     console.log('asynchronous load complete');
+
   }
 }
 
@@ -225,6 +233,7 @@ async function checkCorrectAnswer() {
             updateBudget(currentPlayerName); // Call updateBudget to adjust the user's budget
             alert('Correct answer!');
         } else {
+            updateBudgetVäärinkysymys(currentPlayerName)
             alert('Wrong answer. Try again!');
         }
     } catch (error) {
@@ -236,6 +245,40 @@ async function checkCorrectAnswer() {
 async function updateBudget(playerName) {
     try {
         const response = await fetch(`http://127.0.0.1:3000/update_add_money_budget/${playerName}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Budget update response:', data);
+        alert('Budget updated successfully!');
+    } catch (error) {
+        console.error('Error updating budget:', error);
+        alert('There was an error updating the budget. Please try again.');
+    }
+}
+async function updateBudgetVäärinkysymys(playerName) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3000/update_budget_väärinkysymys/${playerName}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Budget update response:', data);
+        alert('Budget updated successfully!');
+    } catch (error) {
+        console.error('Error updating budget:', error);
+        alert('There was an error updating the budget. Please try again.');
+    }
+}
+async function updateBudgetCountry(playerName) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3000/update_budget_liikuminen/${playerName}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         });

@@ -152,7 +152,7 @@ def update_add_money_budget(player_name):
     try:
 
 
-        sql = f"UPDATE game SET co2_budget = co2_budget + 10 WHERE screen_name = '{player_name}'"
+        sql = f"UPDATE game SET co2_budget = co2_budget + 50 WHERE screen_name = '{player_name}'"
         cursor = yhteys.cursor()
         cursor.execute(sql)
         yhteys.commit()
@@ -164,7 +164,7 @@ def update_add_money_budget(player_name):
         print(f"An error occurred: {str(e)}")
         return Response(response=json.dumps({"message": "An error occurred"}), status=500, mimetype="application/json")
 @app.route('/update_budget_väärinkysymys/<player_name>', methods=['POST'])
-def update_add_money_budget(player_name):
+def update_budget_väärinkysymys(player_name):
     try:
 
 
@@ -185,7 +185,7 @@ def update_budget_liikuminen(player_name):
     try:
 
 
-        sql = f"UPDATE game SET co2_budget = co2_budget - 5 WHERE screen_name = '{player_name}'"
+        sql = f"UPDATE game SET co2_budget = co2_budget - 20 WHERE screen_name = '{player_name}'"
         cursor = yhteys.cursor()
         cursor.execute(sql)
         yhteys.commit()
