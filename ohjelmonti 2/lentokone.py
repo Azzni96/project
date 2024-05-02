@@ -5,7 +5,7 @@ from flask_cors import CORS
 import mysql.connector
 import uuid
 
-
+#Peli
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
     port=3306,
