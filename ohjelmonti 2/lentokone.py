@@ -21,7 +21,7 @@ app.config['COR_HEADERS'] = 'Content-Type'
 
 @app.route('/airport')
 def airport():
-    sql = f"SELECT iso_country FROM country WHERE iso_country IN ('FI', 'SE');"
+    sql = f"SELECT iso_country FROM country WHERE iso_country IN ('FI', 'SE', 'IT', 'AT', 'FR', 'PL', 'DK', 'NO', 'GR', 'NL', 'ES', 'CZ', 'CH', 'DE', 'BE', 'TR', 'IS', 'GB', 'UA', 'MK');"
     cursor = yhteys.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -69,9 +69,9 @@ def True_choice(iso_country):
 @app.route('/createaccount/<name>')
 def login(name):
     random_id = str(uuid.uuid4())
-    sql = 'insert into game( id, co2_consumed, co2_budget, screen_name) VALUES (%s, %s, %s, %s)'
+    sql = 'insert into game( id, co2_consumed, co2_budget, screen_name, location, iso_country) VALUES (%s, %s, %s, %s, %s, %s)'
     cursor = yhteys.cursor()
-    cursor.execute(sql, (random_id, 0, 300, name))
+    cursor.execute(sql, (random_id, 0, 300, name, 'EFHK', 'FI'))
     yhteys.commit()
     cursor.close()
     return "User registered successfully!"

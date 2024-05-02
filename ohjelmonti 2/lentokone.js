@@ -274,30 +274,49 @@ function updateMap() {
 
 */
 
-// Example coordinates
-    var latitude = 60.178;  // For instance, Paris latitude
-    var longitude = 24.8044;
+// Alustetaan kartta
+var map = L.map('map').setView([51.1657, 10.4515], 4); // تركيز الخريطة على أوروبا
 
-
-// Create the map
-var map = L.map('map').setView([latitude, longitude], 13);
-
-// Add an OpenStreetMap tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Optionally, add a marker
-var marker = L.marker([latitude, longitude]).addTo(map);
-marker.bindPopup('This is the location.').openPopup();
+var markersLayer = new L.LayerGroup().addTo(map);
 
+// فرضية عن وظيفة getQuestion التي تسترجع السؤال لكل دولة
+/*function getQuestion(countryCode) {
+    var questions = {
+        'FI': 'ما هو العدد التقريبي للبحيرات في فنلندا؟',
+        'SE': 'ما هو الحيوان الوطني للسويد؟',
+        'IT': 'ما هي المدينة الأكثر زيارة في إيطاليا؟',
+        'AT': 'ما هو الطبق الوطني للنمسا؟',
+        // ... إضافة المزيد من الأسئلة لكل دولة
+    };
+    return questions[countryCode] || 'لا يوجد سؤال متاح';
+}*/
+// Funktio kartan päivittämiseen valituilla sijainneilla
+function updateMap() {
+    // Tyhjennetään olemassa olevat merkit
+    markersLayer.clearLayers();
 
-function updateMap(value) {
+    locations.forEach(function(location) {
+        var country = location[0];
+        var latitude = location[1];
+        var longitude = location[2];
 
-    var latitude = 48.8566;  // For instance, Paris latitude
-    var longitude = 2.3522;  // Paris longitude
+        // var question = getQuestion(country);
+         var marker = L.marker([latitude, longitude]).addTo(markersLayer);
 
-    var marker = L.marker([latitude, longitude]).addTo(map);
-    marker.bindPopup('This is the location.').openPopup();
+        //marker.bindPopup(question);
+
+        // عند النقر على الماركر، تركز الخريطة على هذا الماركر وتفتح النافذة المنبثقة
+        marker.on('click', function () {
+            map.setView([latitude, longitude], 6); // يمكنك تعديل مستوى التكبير حسب الحاجة
+           //marker.openPopup();
+        });
+        if(country === sessionStorage.getItem('choiceBox'))
+            map.setView([latitude, longitude], 6)
+    });
 }
-
+// Kutsutaan funktiota alustamaan kartta valituilla koordinaateilla
+updateMap();
