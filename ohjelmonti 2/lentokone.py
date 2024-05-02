@@ -163,6 +163,40 @@ def update_add_money_budget(player_name):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         return Response(response=json.dumps({"message": "An error occurred"}), status=500, mimetype="application/json")
+@app.route('/update_budget_väärinkysymys/<player_name>', methods=['POST'])
+def update_add_money_budget(player_name):
+    try:
+
+
+        sql = f"UPDATE game SET co2_budget = co2_budget - 10 WHERE screen_name = '{player_name}'"
+        cursor = yhteys.cursor()
+        cursor.execute(sql)
+        yhteys.commit()
+
+        print("Update successful")
+        cursor.close()
+        return Response(response=json.dumps({"message": "Budget updated successfully"}), status=200, mimetype="application/json")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return Response(response=json.dumps({"message": "An error occurred"}), status=500, mimetype="application/json")
+
+@app.route('/update_budget_liikuminen/<player_name>', methods=['POST'])
+def update_budget_liikuminen(player_name):
+    try:
+
+
+        sql = f"UPDATE game SET co2_budget = co2_budget - 5 WHERE screen_name = '{player_name}'"
+        cursor = yhteys.cursor()
+        cursor.execute(sql)
+        yhteys.commit()
+
+        print("Update successful")
+        cursor.close()
+        return Response(response=json.dumps({"message": "Budget updated successfully"}), status=200, mimetype="application/json")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return Response(response=json.dumps({"message": "An error occurred"}), status=500, mimetype="application/json")
+
 
 
 if __name__ == '__main__':
